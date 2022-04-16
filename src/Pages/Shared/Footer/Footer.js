@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer>
-      <p>
+      <p className="text-center">
         <small>
           &copy;All rights reserved by Monirul.{new Date().getFullYear()}
         </small>
