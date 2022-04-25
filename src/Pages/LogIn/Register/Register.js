@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import SocialLogIn from "../SocialLogin/SocialLogIn";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const Register = () => {
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   if (user) {
     navigate("/home");
@@ -23,6 +25,7 @@ const Register = () => {
   };
   return (
     <div className="registration-form">
+      <PageTitle title="Register"></PageTitle>
       <h2 className="text-center text-primary">Please Register</h2>
       <form onSubmit={handleRegister}>
         <label htmlFor="name">Name</label>
@@ -49,6 +52,7 @@ const Register = () => {
           Log in here.
         </Link>
       </p>
+      <SocialLogIn></SocialLogIn>
     </div>
   );
 };
